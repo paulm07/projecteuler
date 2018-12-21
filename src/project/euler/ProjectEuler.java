@@ -5,8 +5,7 @@
  */
 package project.euler;
 
-import org.bellspark.projecteuler.problems.Problem;
-import org.bellspark.projecteuler.problems.Problem1;
+import org.bellspark.projecteuler.problems.*;
 
 /**
  *
@@ -18,7 +17,7 @@ public class ProjectEuler {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Problem problem = new Problem1();
+        Problem problem = new Problem3();
         
         System.out.println(problem.giveAnswer());
     }
