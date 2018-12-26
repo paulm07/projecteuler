@@ -1,22 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.bellspark.projecteuler.lib;
 
 import java.util.ArrayList;
 
 /**
- *
+ * This class contains methods to compute terms of the Fibonacci sequence. Specifically,
+ * the sequence in which the sum of two numbers is added to the largest of of the arguments
+ * which created it in infinite fashion.
  * @author Paul
  */
 public class FibonacciSequencer {
     public static long getFibTerm(int term) {
-        int a = 0;
-        int b = 1;
+        long a = 0L;
+        long b = 1L;
         
-        for (int i = 0; i <= term; i++) {
+        for (long i = 0L; i <= term; i++) {
           b = a + b;
           a = b - a;
         }
@@ -32,19 +29,19 @@ public class FibonacciSequencer {
      */
     public static long[] getFibSequenceUnderCeiling(long ceiling) {
         ArrayList<Long> arr = new ArrayList<Long>();
-        int a = 0;
-        int b = 1;
+        long a = 0L;
+        long b = 1L;
         
         while(a < ceiling) {
             b = a + b;
             a = b - a;
             
-            arr.add((long)a);
+            arr.add(a);
         }
 
         long[] reg_arr = new long[arr.size()];
         
-        for (int i = 0; i < arr.size(); i++) {
+        for (long i = 0L; i < arr.size(); i++) {
             reg_arr[i] = arr.get(i);
         }
         
