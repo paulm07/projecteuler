@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.bellspark.projecteuler.problems;
 
 import org.bellspark.projecteuler.lib.PrimeFactorizer;
 
 /**
- *
+ * This class was created to solve Problem 3 of Project Euler which
+ * asks for the largest prime factor of 600851475143.
  * @author Paul
  */
 public class Problem3 extends Problem {
@@ -19,7 +15,7 @@ public class Problem3 extends Problem {
     
     @Override
     void solveProblem() {
-        long temp = getLargestIndexValue(PrimeFactorizer.primeFactors(600851475143L));
+        long temp = getLargestIndexValue(PrimeFactorizer.getPrimeFactors(600851475143L));
         super.setAnswer(temp);
     }
     

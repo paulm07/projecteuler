@@ -3,7 +3,8 @@ package org.bellspark.projecteuler.problems;
 import org.bellspark.projecteuler.lib.FibonacciSequencer;
 
 /**
- *
+ * This class solves Problem 2 of Project Euler which asks for the sum
+ * of all even fibonacci terms under 4,000,000.
  * @author Paul
  */
 public class Problem2 extends Problem {

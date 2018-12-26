@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @author Paul
  */
 public class PrimeFactorizer {
-    public static long[] primeFactors(long n) {
+    public static long[] getPrimeFactors(long n) {
         ArrayList<Long> primeFactorsArrList = new ArrayList<Long>();
         
         // Will add the # of 2's that divide n
