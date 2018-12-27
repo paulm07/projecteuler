@@ -3,10 +3,8 @@ package org.bellspark.projecteuler.lib;
 import java.util.ArrayList;
 
 /**
- * This class contains methods to compute terms of the Fibonacci sequence. Specifically,
- * the sequence in which the sum of two numbers is added to the largest of of the arguments
- * which created it in infinite fashion.
- * @author Paul
+ * 
+ * @author pmoli004
  */
 public class FibonacciSequencer {
     public static long getFibTerm(int term) {
@@ -41,7 +39,7 @@ public class FibonacciSequencer {
 
         long[] reg_arr = new long[arr.size()];
         
-        for (long i = 0L; i < arr.size(); i++) {
+        for (int i = 0; i < arr.size(); i++) {
             reg_arr[i] = arr.get(i);
         }
         
