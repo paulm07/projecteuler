@@ -6,12 +6,6 @@ package org.bellspark.projecteuler.problems;
  */
 public class Problem1 extends Problem {
     
-    @Override
-    public long giveAnswer() {
-        solveProblem();
-        return super.getAnswer();
-    }
-    
     /**
      * This method calculates and returns the sum all of the numbers between 
      * 0 and the number supplied exclusive which are multiples of integers 3
@@ -21,7 +15,7 @@ public class Problem1 extends Problem {
      * @return The sum of the multiples of three and five between 0 and the number
      * supplied exclusive.
      */
-     private long getMultipleOfThreeAndFive(int cap) {
+     private long getMultipleOfThreeAndFiveSum(int cap) {
         long sum = 0L;
         
         for (int i = 0; i < cap; i++) {
@@ -34,6 +28,7 @@ public class Problem1 extends Problem {
     
     @Override
      void solveProblem() {
-        super.setAnswer(getMultipleOfThreeAndFive(1000));
+        long temp = getMultipleOfThreeAndFiveSum(1000);
+        super.setAnswer(temp);
     }
 }

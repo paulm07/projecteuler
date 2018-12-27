@@ -1,5 +1,7 @@
 package project.euler;
 
+import java.util.*;
+
 /**
  *
  * @author Paul
@@ -10,9 +12,12 @@ public class MainWindow  extends javax.swing.JFrame implements Observer {
      * Creates new form MainWindow
      */
     public MainWindow() {
-        initComponents();
+        beingSolved = new boolean[cont.PROBLEMS_SOLVED];
+        answers = new long[cont.PROBLEMS_SOLVED];
         cont = new Controller();
+        initComponents();
         loadProblems();
+        register();
     }
 
     /**
@@ -33,6 +38,12 @@ public class MainWindow  extends javax.swing.JFrame implements Observer {
         lblAnswer = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        cmbProblems.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbProblemsItemStateChanged(evt);
+            }
+        });
 
         jLabel1.setText("Problem");
 
@@ -97,8 +108,34 @@ public class MainWindow  extends javax.swing.JFrame implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSolveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolveActionPerformed
-        // TODO add your handling code here:
+        // Get Problem to Solve
+        int problemToSolve = cmbProblems.getSelectedIndex() + 1;
+        
+        beingSolved[cmbProblems.getSelectedIndex()] = true;
+        
+        cont.answerQuestion(problemToSolve);
+        
+        btnSolve.setEnabled(false);
+        
     }//GEN-LAST:event_btnSolveActionPerformed
+
+    private void cmbProblemsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbProblemsItemStateChanged
+        if(cmbProblems.getSelectedIndex() >= 0)
+        {
+                    if(beingSolved[cmbProblems.getSelectedIndex()])
+        {
+            long val = answers[cmbProblems.getSelectedIndex()];
+            lblAnswer.setText("" + val);
+            btnSolve.setEnabled(false);
+        }
+        else {
+            long val = answers[cmbProblems.getSelectedIndex()];
+            lblAnswer.setText("" + val);
+            btnSolve.setEnabled(true);
+        }
+        }
+
+    }//GEN-LAST:event_cmbProblemsItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -148,15 +185,36 @@ public class MainWindow  extends javax.swing.JFrame implements Observer {
     private javax.swing.JLabel lblAnswer;
     // End of variables declaration//GEN-END:variables
     private Controller cont = null;
-    
+    private boolean[] beingSolved = null;
+    private long[] answers = null;
     
     private void loadProblems() {
         for (int i = 1; i <= cont.PROBLEMS_SOLVED; i++) {
             cmbProblems.addItem("Problem " + i);
+            answers[i - 1] = 0;
         }
     }
+    
+    /**
+     * Registers this window with the Controller.
+     */
+    private void register() {
+        cont.registerObserver(this);
+    }
+    
+    /**
+     * Updates the current answer of the problem.
+     * @param problemNumber problem number which has been solved.
+     * @param answer the answer to the problem.
+     */
     @Override
-    public void update(Object information) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void update(int problemNumber, long answer) {
+        answers[problemNumber - 1] = answer;
+        beingSolved[problemNumber - 1] = false;
+        if(cmbProblems.getSelectedIndex() == problemNumber - 1) {
+            lblAnswer.setText("" + answer);
+            if(!btnSolve.isEnabled())
+                btnSolve.setEnabled(true);
+        }
     }
 }

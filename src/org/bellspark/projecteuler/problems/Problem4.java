@@ -19,7 +19,7 @@ public class Problem4 extends Problem{
         
         for (long i = low; i <= high; i++) {
             for (long j = low; j <= high; j++) {
-                if((i * j) == Euler.reverseNumber(i * j))
+                if((i * j) == Euler.reverseNumber(10, i * j))
                     largestPalindrome = i * j;
             }
         }

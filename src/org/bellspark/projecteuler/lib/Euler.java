@@ -13,22 +13,29 @@ import java.util.Queue;
  * @author pmoli004
  */
 public class Euler {
-    public static long reverseNumber(long num) {
+    /**
+     * Reverses a number based on the base which is provided.
+     * @param base number base.
+     * @param num number to be reversed.
+     * @return reversed number.
+     */
+    public static long reverseNumber(long base, long num) {
         LinkedList<Long> numStack = new LinkedList<Long>();
         int exponent = 0;
         long reversedNumber = 0;
         
         while(num != 0) {
-            numStack.add(num % 10);
-            num /= 10;
+            numStack.add(num % base);
+            num /= base;
             exponent++;
         }
         
         while(!numStack.isEmpty()) {
             exponent--;
-            reversedNumber += numStack.pop() * Math.pow(10, exponent);
+            reversedNumber += numStack.pop() * Math.pow(base, exponent);
         }
         
         return reversedNumber;
     }
+    
 }

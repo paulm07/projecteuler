@@ -7,13 +7,9 @@ package org.bellspark.projecteuler.problems;
 public abstract class Problem {
     private long answer;
     
-    public long getAnswer() {
-        return this.answer;
-    }
-    
     public long giveAnswer() {
         solveProblem();
-        return getAnswer();
+        return this.answer;
     }
     
     public void setAnswer(long anAnswer) {
