@@ -1,12 +1,15 @@
-package project.euler;
+package org.bellspark.projecteuler.gui;
 
 import java.util.*;
+import org.bellspark.projecteuler.problems.Problem;
+import project.euler.Controller;
+import project.euler.Observer;
 
 /**
  *
  * @author Paul
  */
-public class MainWindow  extends javax.swing.JFrame implements Observer {
+public class MainWindow extends javax.swing.JFrame implements Observer {
 
     /**
      * Creates new form MainWindow
@@ -110,29 +113,26 @@ public class MainWindow  extends javax.swing.JFrame implements Observer {
     private void btnSolveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolveActionPerformed
         // Get Problem to Solve
         int problemToSolve = cmbProblems.getSelectedIndex() + 1;
-        
+
         beingSolved[cmbProblems.getSelectedIndex()] = true;
-        
+
         cont.answerQuestion(problemToSolve);
-        
+
         btnSolve.setEnabled(false);
-        
+
     }//GEN-LAST:event_btnSolveActionPerformed
 
     private void cmbProblemsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbProblemsItemStateChanged
-        if(cmbProblems.getSelectedIndex() >= 0)
-        {
-                    if(beingSolved[cmbProblems.getSelectedIndex()])
-        {
-            long val = answers[cmbProblems.getSelectedIndex()];
-            lblAnswer.setText("" + val);
-            btnSolve.setEnabled(false);
-        }
-        else {
-            long val = answers[cmbProblems.getSelectedIndex()];
-            lblAnswer.setText("" + val);
-            btnSolve.setEnabled(true);
-        }
+        if (cmbProblems.getSelectedIndex() >= 0) {
+            if (beingSolved[cmbProblems.getSelectedIndex()]) {
+                long val = answers[cmbProblems.getSelectedIndex()];
+                lblAnswer.setText("" + val);
+                btnSolve.setEnabled(false);
+            } else {
+                long val = answers[cmbProblems.getSelectedIndex()];
+                lblAnswer.setText("" + val);
+                btnSolve.setEnabled(true);
+            }
         }
 
     }//GEN-LAST:event_cmbProblemsItemStateChanged
@@ -170,7 +170,7 @@ public class MainWindow  extends javax.swing.JFrame implements Observer {
                 MainWindow win = new MainWindow();
                 win.setLocationRelativeTo(null);
                 win.setVisible(true);
-                
+
             }
         });
     }
@@ -187,34 +187,39 @@ public class MainWindow  extends javax.swing.JFrame implements Observer {
     private Controller cont = null;
     private boolean[] beingSolved = null;
     private long[] answers = null;
-    
+
     private void loadProblems() {
         for (int i = 1; i <= cont.PROBLEMS_SOLVED; i++) {
             cmbProblems.addItem("Problem " + i);
             answers[i - 1] = 0;
         }
     }
-    
+
     /**
      * Registers this window with the Controller.
      */
     private void register() {
         cont.registerObserver(this);
     }
-    
+
     /**
      * Updates the current answer of the problem.
-     * @param problemNumber problem number which has been solved.
-     * @param answer the answer to the problem.
+     *
+     * @param obj the problem used to update the answer field.
      */
     @Override
-    public void update(int problemNumber, long answer) {
-        answers[problemNumber - 1] = answer;
-        beingSolved[problemNumber - 1] = false;
-        if(cmbProblems.getSelectedIndex() == problemNumber - 1) {
-            lblAnswer.setText("" + answer);
-            if(!btnSolve.isEnabled())
-                btnSolve.setEnabled(true);
+    public void update(Object obj) {
+        if (obj instanceof Problem) {
+            Problem problem = (Problem) obj;
+            answers[problem.getProblemNumber() - 1] = problem.getAnswer();
+            beingSolved[problem.getProblemNumber() - 1] = false;
+            if (cmbProblems.getSelectedIndex() == problem.getProblemNumber() - 1) {
+                lblAnswer.setText("" + problem.getAnswer());
+                if (!btnSolve.isEnabled()) {
+                    btnSolve.setEnabled(true);
+                }
+            }
         }
+
     }
 }

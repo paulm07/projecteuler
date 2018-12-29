@@ -9,6 +9,10 @@ import org.bellspark.projecteuler.lib.PrimeFactorizer;
  */
 public class Problem3 extends Problem {
     
+    public Problem3() {
+        super.setProblemNumber(3);
+    }
+    
     private long getLargestIndexValue(long[] arr) {
         return arr[arr.length - 1];
     }

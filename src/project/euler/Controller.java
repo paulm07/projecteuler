@@ -50,13 +50,14 @@ public class Controller implements Subject {
         Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
             public void run() {
-                runProblemSolver(problemNumber, problem);
+                runProblemSolver(problem);
             }
         });
     }
 
-    private void runProblemSolver(int problemNumber, Problem problem) {
-        notifyObservers(problemNumber, problem.giveAnswer());
+    private void runProblemSolver(Problem aProblem) {
+        aProblem.computeAnswer();
+        notifyObservers(aProblem);
     }
 
     @Override
@@ -74,9 +75,9 @@ public class Controller implements Subject {
     }
 
     @Override
-    public void notifyObservers(int problemNumber, long answer) {
+    public void notifyObservers(Object obj) {
         for (Observer e : observers) {
-            e.update(problemNumber, answer);
+            e.update(obj);
         }
     }
 

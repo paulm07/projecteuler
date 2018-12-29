@@ -6,6 +6,10 @@ package org.bellspark.projecteuler.problems;
  */
 public class Problem1 extends Problem {
     
+    public Problem1() {
+        super.setProblemNumber(1);
+    }
+    
     /**
      * This method calculates and returns the sum all of the numbers between 
      * 0 and the number supplied exclusive which are multiples of integers 3

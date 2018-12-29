@@ -7,5 +7,5 @@ package project.euler;
 public interface Subject {
     public void registerObserver(Observer anObserver);
     public void removeObserver(Observer anObserver);
-    public void notifyObservers(int problemNumber, long answer);
+    public void notifyObservers(Object obj);
 }

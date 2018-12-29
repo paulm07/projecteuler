@@ -13,6 +13,9 @@ import org.bellspark.projecteuler.lib.Euler;
  */
 public class Problem4 extends Problem{
 
+    public Problem4() {
+        super.setProblemNumber(4);
+    }
     public long findLargestPalindromeInRange(long low, long high) {
         long largestPalindrome = 0;
         

@@ -11,6 +11,9 @@ package org.bellspark.projecteuler.problems;
  */
 public class Problem5 extends Problem {
 
+    public Problem5() {
+        super.setProblemNumber(5);
+    }
     @Override
     void solveProblem() {
         while(true);
